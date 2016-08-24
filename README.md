@@ -4,7 +4,6 @@ Here is an up-to-date jquery datatable frontend / django backend CRUD that can b
 
 ## Running the Application
 
-
 Make sure you create the your DB using:
 
     ./manage.py migrate
