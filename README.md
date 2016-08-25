@@ -1,4 +1,4 @@
-# Django CRUD App
+# Django CRUD Datatables App
 
 Here is an up-to-date jquery datatable frontend / django backend CRUD that can be re-used
 
