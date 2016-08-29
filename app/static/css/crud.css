@@ -1,0 +1,15 @@
+select.editable {
+    border: 1px solid #111;
+   background: transparent;
+   padding: 5px 35px 5px 5px;
+   font-size: 16px;
+   border: 1px solid #ccc;
+   height: 30px;
+   -webkit-appearance: none;
+   -moz-appearance: none;
+   appearance: none;
+}
+
+.hideTechDetail {
+    display:none;
+}

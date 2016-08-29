@@ -8,12 +8,12 @@ from app.models import Book
 class BookForm(ModelForm):
     class Meta:
         model = Book
-        fields = ['name', 'pages']
+        fields = ['name', 'pages', 'date_written', 'type']
 
 def home(request):
     html = """
     <h1>Django CRUD Example</h1>
-    <a href="/books/">Function Based Views</a><br>
+    <a href="/books/">Book list</a><br>
     """
     return HttpResponse(html)
 
@@ -33,14 +33,15 @@ def book_create(request, template_name='book_form.html'):
 def book_update(request, pk, template_name='book_form.html'):
     book= get_object_or_404(Book, pk=pk)
     form = BookForm(request.POST or None, instance=book)
+    print(request.POST);
     if form.is_valid():
         form.save()
-        return redirect('book_list')
-    return render(request, template_name, {'form':form})
+        return HttpResponse(status=200)
+    return HttpResponse(status=400)
 
 def book_delete(request, pk):
     book= get_object_or_404(Book, pk=pk)    
     if request.method=='DELETE':
         book.delete()
         return HttpResponse(status=204)
-    return HttpResponseNotFound()
+    return HttpResponse(status=405)

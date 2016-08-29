@@ -9,23 +9,27 @@
 	<table class="table table-striped table-hover table-bordered" id="datatable">
 		<thead>
 			<tr>
-                <th>Id</th>
-                <th></th>
 				<th>Name</th>
 				<th>Length</th>
+                <th>Date written</th>
+                <th>Type</th>
 				<th>Edit</th>
 				<th>Delete</th>
+                <th class="hideTechDetail">Id</th>
+                <th class="hideTechDetail"></th>
 			</tr>
 		</thead>
 		<tbody>
             {% for book in object_list %}
             <tr>
-                <td>{{ book.id }}</td>
-                <td>{% csrf_token %}</td>
                 <td>{{ book.name }}</td>
                 <td>{{ book.pages }}</td>
+                <td>{{ book.date_written|date:'Y-m-d'  }}</td>
+                <td>{{ book.type  }}</td>
                 <td><a class="edit" href="">Edit</a></td>
                 <td><a class="delete" href="">Delete</a></td>
+                <td class="hideTechDetail">{{ book.id }}</td>
+                <td class="hideTechDetail">{% csrf_token %}</td>
             </tr>
             {% endfor %}
 		</tbody>
