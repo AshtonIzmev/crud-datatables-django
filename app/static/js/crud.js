@@ -171,13 +171,13 @@ $( document ).ready(function() {
 			nEditing = nRow;
 		} else if (nEditing == nRow && this.innerHTML == "Save") {
 			/* Editing this row and want to save it */
-			nEditing = null;
 			var jqInputs = $('input.editable, select.editable', nRow);
 			var dataPost = {};
 			for (var i = 0, iLen = jqInputs.length; i < iLen; i++) {
                 dataPost[fieldNamesToEdit[i]] = jqInputs[i].value;
             }
             saveRow(oTable, nEditing);
+            nEditing = null;
 
 			$.ajax({
               method: "POST",
