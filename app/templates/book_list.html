@@ -4,6 +4,16 @@
 
 <h1>Books</h1>
 
+<div class="padding-20">
+    <label>Sélectionnez une plage :</label>
+    <button id="daterange" type="button" class="btn btn-sm btn-default">Date range</button>
+    <p>
+        {% if date_range_start %}
+        Plage de date affichée : du <b>{{ date_range_start }}</b> au <b> {{ date_range_end }} </b>
+        {% endif %}
+    </p>
+</div>
+
 <div id="content" class="padding-20">
 	<!-- HTML DATATABLE -->
 	<table class="table table-striped table-hover table-bordered" id="datatable">

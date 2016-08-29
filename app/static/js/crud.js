@@ -10,6 +10,18 @@ $( document ).ready(function() {
         })
     }
 
+    $('#daterange').daterangepicker( {
+        locale: {
+          format: 'YYYY-MM-DD'
+        },
+    })
+
+    $('#daterange').on('apply.daterangepicker', function(ev, picker) {
+        var dsf = picker.startDate.format('YYYY/MM/DD');
+        var edf = picker.endDate.format('YYYY/MM/DD');
+        window.location = '/books/'+dsf+'/'+edf;
+    });
+
     var fieldsToEdit = [0, 1, 2, 3];
     var fieldNamesToEdit = ['name', 'pages', 'date_written', 'type' ];
     var fieldEditSave = 4;

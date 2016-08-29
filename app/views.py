@@ -1,6 +1,7 @@
 from django.forms import ModelForm
 from django.http import HttpResponse, HttpResponseNotFound, HttpResponseGone
 from django.shortcuts import render, redirect, get_object_or_404
+import datetime
 
 from app.models import Book
 
@@ -18,9 +19,20 @@ def home(request):
     return HttpResponse(html)
 
 def book_list(request, template_name='book_list.html'):
-    book = Book.objects.all()
+    books = Book.objects.all()
     data = {}
-    data['object_list'] = book
+    data['object_list'] = books
+    return render(request, template_name, data)
+
+def book_list_range(request, y1, m1, d1, y2, m2, d2, template_name='book_list.html'):
+    date1 = datetime.date(int(y1), int(m1), int(d1))
+    date2 = datetime.date(int(y2), int(m2), int(d2))
+    books = Book.objects.exclude(date_written__lt=date1).exclude(date_written__gt=date2)
+    print(len(books), date1, date2)
+    data = {}
+    data['object_list'] = books
+    data['date_range_start'] = date1
+    data['date_range_end'] = date2
     return render(request, template_name, data)
 
 def book_create(request, template_name='book_form.html'):
@@ -30,7 +42,7 @@ def book_create(request, template_name='book_form.html'):
         return redirect('book_list')
     return render(request, template_name, {'form':form})
 
-def book_update(request, pk, template_name='book_form.html'):
+def book_update(request, pk):
     book= get_object_or_404(Book, pk=pk)
     form = BookForm(request.POST or None, instance=book)
     print(request.POST);
