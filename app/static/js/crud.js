@@ -1,5 +1,14 @@
 $( document ).ready(function() {
 
+    var fieldsToEdit = [0, 1, 2, 3];
+    var fieldNamesToEdit = ['name', 'pages', 'date_written', 'type' ];
+    var fieldEditSave = 4;
+    var fieldDeleteCancel = 5;
+    var typesSelect = ['A', 'B', 'C'];
+
+    var fieldObjectId = 6;
+    var fieldCSRFToken = 7;
+
     function datePick() {
         $('input[name="date_written"]').daterangepicker({
             singleDatePicker: true,
@@ -13,7 +22,7 @@ $( document ).ready(function() {
     $('#daterange').daterangepicker( {
         locale: {
           format: 'YYYY-MM-DD'
-        },
+        }
     })
 
     $('#daterange').on('apply.daterangepicker', function(ev, picker) {
@@ -21,15 +30,6 @@ $( document ).ready(function() {
         var edf = picker.endDate.format('YYYY/MM/DD');
         window.location = '/books/'+dsf+'/'+edf;
     });
-
-    var fieldsToEdit = [0, 1, 2, 3];
-    var fieldNamesToEdit = ['name', 'pages', 'date_written', 'type' ];
-    var fieldEditSave = 4;
-    var fieldDeleteCancel = 5;
-    var typesSelect = ['A', 'B', 'C'];
-
-    var fieldObjectId = 6;
-    var fieldCSRFToken = 7;
 
 	function restoreRow(oTable, nRow) {
 		var aData = oTable.fnGetData(nRow);
